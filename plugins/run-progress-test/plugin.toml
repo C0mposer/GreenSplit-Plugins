@@ -1,0 +1,15 @@
+manifest_version = 1
+id = "com.greensplit.testing.run-progress"
+name = "Run Progress Test"
+version = "0.1.0"
+entrypoint = "main.py"
+greensplit_api = ">=0.1,<1.0"
+description = "A small test plugin that renders segment completion as a progress bar."
+author = "GreenSplit"
+
+[[components]]
+id = "run_progress"
+name = "Run Progress Test"
+category = "Testing"
+description = "Displays completed segments and a progress bar."
+preferred_height = 50

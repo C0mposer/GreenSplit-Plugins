@@ -1,0 +1,15 @@
+manifest_version = 1
+id = "com.greensplit.testing.attempt-counter"
+name = "Attempt Counter Test"
+version = "0.1.0"
+entrypoint = "main.py"
+greensplit_api = ">=0.1,<1.0"
+description = "A small test plugin that displays the run's attempt count."
+author = "GreenSplit"
+
+[[components]]
+id = "attempt_counter"
+name = "Attempt Counter Test"
+category = "Testing"
+description = "Displays the current run's attempt count."
+preferred_height = 32
