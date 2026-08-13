@@ -1,0 +1,57 @@
+name: Validate plugins
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out plugin registry
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Compile plugin sources
+        run: >-
+          python -m py_compile
+          plugins/resets-today/main.py
+          plugins/resets-today/tests/test_plugin.py
+          plugins/runs-since-pb/main.py
+          plugins/runs-since-pb/tests/test_plugin.py
+          tools/package_plugins.py
+
+      - name: Build release archives
+        run: |
+          python tools/package_plugins.py --plugin resets-today
+          python tools/package_plugins.py --plugin runs-since-pb
+
+      - name: Validate catalog metadata
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import tomllib
+
+          root = Path.cwd()
+          catalog = json.loads((root / "plugins.json").read_text(encoding="utf-8"))
+          entries = catalog["plugins"]
+          assert len(entries) == 2
+          for entry in entries:
+              slug = entry["repository"].rsplit("/", 1)[-1]
+              manifest = tomllib.loads(
+                  (root / "plugins" / slug / "plugin.toml").read_text(encoding="utf-8")
+              )
+              assert entry["id"] == manifest["id"]
+              assert entry["name"] == manifest["name"]
+              assert entry["version"] == manifest["version"]
+          PY

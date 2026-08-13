@@ -1,0 +1,15 @@
+manifest_version = 1
+id = "com.greensplit.resets-today"
+name = "Resets Today"
+version = "1.0.0"
+entrypoint = "main.py"
+greensplit_api = ">=0.1,<1.0"
+description = "Shows how many runs you reset today."
+author = "GreenSplit contributors"
+
+[[components]]
+id = "resets_today"
+name = "Resets Today"
+category = "Information"
+description = "Shows how many runs you reset today."
+preferred_height = 31

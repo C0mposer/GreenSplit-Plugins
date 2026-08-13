@@ -1,0 +1,15 @@
+manifest_version = 1
+id = "com.greensplit.runs-since-pb"
+name = "Runs Since PB"
+version = "1.0.0"
+entrypoint = "main.py"
+greensplit_api = ">=0.1,<1.0"
+description = "Shows how many runs you started since your last PB."
+author = "GreenSplit contributors"
+
+[[components]]
+id = "runs_since_pb"
+name = "Runs Since PB"
+category = "Information"
+description = "Shows how many runs you started since your last PB."
+preferred_height = 31

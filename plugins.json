@@ -1,79 +1,54 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-11T06:57:39Z",
+  "generated_at": "2026-08-13T07:25:52Z",
   "demo": false,
   "plugins": [
     {
-      "id": "com.greensplit.testing.current-segment",
-      "name": "Current Segment Test",
-      "version": "0.1.0",
-      "author": "GreenSplit",
-      "summary": "Show the segment currently being timed.",
-      "description": "A deliberately small component used to test Store installation and on-demand Python startup.",
-      "trust": "official",
-      "featured": true,
-      "downloads": 1,
-      "updated_at": "2026-08-11T06:57:39Z",
-      "accent": "#2DAF5F",
-      "tags": [
-        "Testing",
-        "Information"
-      ],
-      "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/current-segment-test",
-      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/test-plugins-v0.1.0/greensplit-current-segment-test-0.1.0.zip",
-      "github_release": {
-        "repository": "C0mposer/GreenSplit-Plugins",
-        "tag": "test-plugins-v0.1.0",
-        "asset": "greensplit-current-segment-test-0.1.0.zip"
-      }
-    },
-    {
-      "id": "com.greensplit.testing.attempt-counter",
-      "name": "Attempt Counter Test",
-      "version": "0.1.0",
-      "author": "GreenSplit",
-      "summary": "Show the current run's attempt count.",
-      "description": "A deliberately small component used to verify installed plugins can read the active run snapshot.",
+      "id": "com.greensplit.resets-today",
+      "name": "Resets Today",
+      "version": "1.0.0",
+      "author": "GreenSplit contributors",
+      "summary": "Count today's resets.",
+      "description": "Shows how many runs you reset today.",
       "trust": "official",
       "featured": true,
       "downloads": 0,
-      "updated_at": "2026-08-11T06:57:39Z",
-      "accent": "#377DFF",
+      "updated_at": "2026-08-13T07:25:52Z",
+      "accent": "#55DD77",
       "tags": [
-        "Testing",
-        "Attempts"
+        "Attempts",
+        "Information"
       ],
-      "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/attempt-counter-test",
-      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/test-plugins-v0.1.0/greensplit-attempt-counter-test-0.1.0.zip",
+      "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/resets-today",
+      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/resets-today-v1.0.0/greensplit-resets-today-1.0.0.zip",
       "github_release": {
         "repository": "C0mposer/GreenSplit-Plugins",
-        "tag": "test-plugins-v0.1.0",
-        "asset": "greensplit-attempt-counter-test-0.1.0.zip"
+        "tag": "resets-today-v1.0.0",
+        "asset": "greensplit-resets-today-1.0.0.zip"
       }
     },
     {
-      "id": "com.greensplit.testing.run-progress",
-      "name": "Run Progress Test",
-      "version": "0.1.0",
-      "author": "GreenSplit",
-      "summary": "Render completed segments as a compact progress bar.",
-      "description": "A deliberately small component used to test multi-row plugin views and live timer snapshots.",
+      "id": "com.greensplit.runs-since-pb",
+      "name": "Runs Since PB",
+      "version": "1.0.0",
+      "author": "GreenSplit contributors",
+      "summary": "Count runs since your last PB.",
+      "description": "Shows how many runs you started since your last PB.",
       "trust": "official",
       "featured": true,
-      "downloads": 1,
-      "updated_at": "2026-08-11T06:57:39Z",
-      "accent": "#965CFF",
+      "downloads": 0,
+      "updated_at": "2026-08-13T07:25:52Z",
+      "accent": "#55DD77",
       "tags": [
-        "Testing",
-        "Progress",
-        "Visual"
+        "Attempts",
+        "Information"
       ],
-      "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/run-progress-test",
-      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/test-plugins-v0.1.0/greensplit-run-progress-test-0.1.0.zip",
+      "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/runs-since-pb",
+      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/runs-since-pb-v1.0.0/greensplit-runs-since-pb-1.0.0.zip",
       "github_release": {
         "repository": "C0mposer/GreenSplit-Plugins",
-        "tag": "test-plugins-v0.1.0",
-        "asset": "greensplit-run-progress-test-0.1.0.zip"
+        "tag": "runs-since-pb-v1.0.0",
+        "asset": "greensplit-runs-since-pb-1.0.0.zip"
       }
     }
   ]
