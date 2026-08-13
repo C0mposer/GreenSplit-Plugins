@@ -2,9 +2,8 @@
 
 Resets Today shows how many unfinished runs you reset today.
 
-The plugin stores counts separately for each game, category, platform, region,
-variable set, and route branch. It does not use the network.
+Counts are kept in memory for each game and category while the plugin is
+active. It does not use the network.
 
-`main.py` is commented as a reference for plugin authors. It demonstrates a
-manifest component, typed settings, a reset event, snapshots, a view, and
-persistent JSON storage.
+`main.py` is a small reference for plugin authors. It demonstrates a layout
+component, an event, and a rendered element.
