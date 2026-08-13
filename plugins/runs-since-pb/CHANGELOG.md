@@ -1,4 +1,8 @@
-# Runs Since PB 2.0.0
+# Runs Since PB 3.0.0
+
+- Moved layout component details into the Python decorator.
+
+## 2.0.0
 
 - Updated for GreenSplit Plugin API 1.0.
 - Simplified the plugin for new authors.

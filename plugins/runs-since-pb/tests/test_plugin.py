@@ -19,7 +19,7 @@ class FakeRuntime:
         self.data_root = data_root
         self.plugin_id = "com.greensplit.runs-since-pb"
         self.plugin_name = "Runs Since PB"
-        self.plugin_version = "2.0.0"
+        self.plugin_version = "3.0.0"
         self.snapshot = gs.Snapshot()
         self.plugin: gs.Plugin | None = None
 

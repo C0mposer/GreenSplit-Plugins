@@ -1,4 +1,8 @@
-# Resets Today 2.0.0
+# Resets Today 3.0.0
+
+- Moved layout component details into the Python decorator.
+
+## 2.0.0
 
 - Updated for GreenSplit Plugin API 1.0.
 - Simplified the plugin for new authors.

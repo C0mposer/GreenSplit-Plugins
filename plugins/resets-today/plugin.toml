@@ -1,14 +1,7 @@
 manifest_version = 1
 id = "com.greensplit.resets-today"
 name = "Resets Today"
-version = "2.0.0"
+version = "3.0.0"
 entrypoint = "main.py"
 description = "Shows how many runs you reset today."
 author = "GreenSplit contributors"
-
-[[components]]
-id = "resets_today"
-name = "Resets Today"
-category = "Information"
-description = "Shows how many runs you reset today."
-preferred_height = 31

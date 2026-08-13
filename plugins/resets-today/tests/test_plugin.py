@@ -19,7 +19,7 @@ class FakeRuntime:
         self.data_root = data_root
         self.plugin_id = "com.greensplit.resets-today"
         self.plugin_name = "Resets Today"
-        self.plugin_version = "2.0.0"
+        self.plugin_version = "3.0.0"
         self.snapshot = gs.Snapshot()
         self.plugin: gs.Plugin | None = None
 

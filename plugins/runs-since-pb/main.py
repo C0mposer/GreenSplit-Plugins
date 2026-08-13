@@ -13,8 +13,12 @@ def run_key(run: gs.RunSnapshot):
     return (game_name, category_name)
 
 
-@plugin.layout_component("runs_since_pb")
-def render(ctx: gs.ComponentContext) -> gs.Element:
+@plugin.layout_component(
+    name="Runs Since PB",
+    category="Information",
+    description="Shows how many runs you started since your last PB.",
+)
+def runs_since_pb(ctx: gs.ComponentContext) -> gs.Element:
     key = run_key(ctx.run)
     count = run_counts.get(key, 0)
     return gs.ui.label_value("Runs Since PB", count)

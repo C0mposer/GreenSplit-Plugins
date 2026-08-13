@@ -16,8 +16,12 @@ def run_key(run: gs.RunSnapshot):
     return (game_name, category_name, today)
 
 
-@plugin.layout_component("resets_today")
-def render(ctx: gs.ComponentContext) -> gs.Element:
+@plugin.layout_component(
+    name="Resets Today",
+    category="Information",
+    description="Shows how many runs you reset today.",
+)
+def resets_today(ctx: gs.ComponentContext) -> gs.Element:
     key = run_key(ctx.run)
     count = reset_counts.get(key, 0)
     return gs.ui.label_value("Resets Today", count)
