@@ -1,0 +1,38 @@
+name: Remove obsolete workflow records
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Remove runs from rewritten commits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for run_id in \
+            31676553851 \
+            31676402813 \
+            31676260609 \
+            31676117538 \
+            31676022239
+          do
+            gh api --method DELETE \
+              "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" || true
+          done
+
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA" \
+            --jq '.workflow_runs[].id' |
+          while read -r run_id
+          do
+            if [ "$run_id" != "$GITHUB_RUN_ID" ]; then
+              gh api --method DELETE \
+                "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" || true
+            fi
+          done
