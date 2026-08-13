@@ -4,24 +4,30 @@ import greensplit as gs
 
 
 plugin = gs.Plugin()
-run_counts: dict[tuple[str, str], int] = {}
+run_counts = {}
 
 
-def run_key(run: gs.RunSnapshot) -> tuple[str, str]:
-    return run.game_name, run.category_name
+def run_key(run: gs.RunSnapshot):
+    game_name = run.game_name
+    category_name = run.category_name
+    return (game_name, category_name)
 
 
 @plugin.layout_component("runs_since_pb")
 def render(ctx: gs.ComponentContext) -> gs.Element:
-    return gs.ui.label_value("Runs Since PB", run_counts.get(run_key(ctx.run), 0))
+    key = run_key(ctx.run)
+    count = run_counts.get(key, 0)
+    return gs.ui.label_value("Runs Since PB", count)
 
 
 @plugin.on_timer_started
 def count_run(event: gs.TimerStartedEvent) -> None:
     key = run_key(event.snapshot.run)
-    run_counts[key] = run_counts.get(key, 0) + 1
+    old_count = run_counts.get(key, 0)
+    run_counts[key] = old_count + 1
 
 
 @plugin.on_personal_best
 def reset_count(event: gs.PersonalBestEvent) -> None:
-    run_counts[run_key(event.snapshot.run)] = 0
+    key = run_key(event.snapshot.run)
+    run_counts[key] = 0

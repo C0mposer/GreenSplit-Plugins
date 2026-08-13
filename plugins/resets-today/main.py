@@ -6,20 +6,26 @@ import greensplit as gs
 
 
 plugin = gs.Plugin()
-reset_counts: dict[tuple[str, str, date], int] = {}
+reset_counts = {}
 
 
-def run_key(run: gs.RunSnapshot) -> tuple[str, str, date]:
-    return run.game_name, run.category_name, date.today()
+def run_key(run: gs.RunSnapshot):
+    game_name = run.game_name
+    category_name = run.category_name
+    today = date.today()
+    return (game_name, category_name, today)
 
 
 @plugin.layout_component("resets_today")
 def render(ctx: gs.ComponentContext) -> gs.Element:
-    return gs.ui.label_value("Resets Today", reset_counts.get(run_key(ctx.run), 0))
+    key = run_key(ctx.run)
+    count = reset_counts.get(key, 0)
+    return gs.ui.label_value("Resets Today", count)
 
 
 @plugin.on_reset
 def count_reset(event: gs.ResetEvent) -> None:
-    if not event.completed:
+    if event.completed is False:
         key = run_key(event.snapshot.run)
-        reset_counts[key] = reset_counts.get(key, 0) + 1
+        old_count = reset_counts.get(key, 0)
+        reset_counts[key] = old_count + 1
