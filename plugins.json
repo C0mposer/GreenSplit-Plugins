@@ -68,11 +68,11 @@
         "Information"
       ],
       "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/number-of-paces",
-      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/number-of-paces-v1.0.0/greensplit-number-of-paces-1.0.0.zip",
+      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/number-of-paces-1.0.0/Number.of.Paces.zip",
       "github_release": {
         "repository": "C0mposer/GreenSplit-Plugins",
         "tag": "number-of-paces-v1.0.0",
-        "asset": "greensplit-number-of-paces-1.0.0.zip"
+        "asset": "Number.of.Paces.zip"
       }
     }
   ]
