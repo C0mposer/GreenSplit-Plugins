@@ -2,8 +2,8 @@
 
 Runs Since PB shows how many runs you started since your last PB.
 
-Counts are kept in memory for each game and category while the plugin is
+Counts are kept in memory for each game and category while the component is
 active. It does not use the network.
 
-`main.py` is a small reference for plugin authors. It demonstrates a layout
-component, timer events, and a rendered element.
+`main.py` is a small reference for plugin authors. It demonstrates a simple
+`gs.Component`, timer event methods, and `ui.info()`.

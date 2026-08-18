@@ -1,4 +1,8 @@
-# Runs Since PB 3.0.0
+# Runs Since PB 4.0.0
+
+- Updated the example to GreenSplit's simple `gs.Component` API.
+
+## 3.0.0
 
 - Moved layout component details into the Python decorator.
 

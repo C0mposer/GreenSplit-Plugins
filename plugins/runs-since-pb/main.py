@@ -4,34 +4,28 @@ import greensplit as gs
 
 
 plugin = gs.Plugin()
-run_counts = {}
 
 
 def run_key(run: gs.RunSnapshot):
-    game_name = run.game_name
-    category_name = run.category_name
-    return (game_name, category_name)
+    return (run.game_name, run.category_name)
 
 
-@plugin.layout_component(
-    name="Runs Since PB",
+@plugin.component(
+    "Runs Since PB",
     category="Information",
     description="Shows how many runs you started since your last PB.",
 )
-def runs_since_pb(ctx: gs.ComponentContext) -> gs.Element:
-    key = run_key(ctx.run)
-    count = run_counts.get(key, 0)
-    return gs.ui.label_value("Runs Since PB", count)
+class RunsSincePB(gs.Component):
+    def __init__(self):
+        super().__init__()
+        self.counts = {}
 
+    def on_timer_started(self, event: gs.TimerStartedEvent):
+        key = run_key(event.run)
+        self.counts[key] = self.counts.get(key, 0) + 1
 
-@plugin.on_timer_started
-def count_run(event: gs.TimerStartedEvent) -> None:
-    key = run_key(event.snapshot.run)
-    old_count = run_counts.get(key, 0)
-    run_counts[key] = old_count + 1
+    def on_personal_best(self, event: gs.PersonalBestEvent):
+        self.counts[run_key(event.run)] = 0
 
-
-@plugin.on_personal_best
-def reset_count(event: gs.PersonalBestEvent) -> None:
-    key = run_key(event.snapshot.run)
-    run_counts[key] = 0
+    def layout(self, ui: gs.UI):
+        ui.info("Runs Since PB", self.counts.get(run_key(self.run), 0))

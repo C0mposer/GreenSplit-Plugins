@@ -11,7 +11,7 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN_SLUGS = ("resets-today", "runs-since-pb")
+PLUGIN_SLUGS = ("resets-today", "runs-since-pb", "number-of-paces")
 PACKAGE_FILES = (
     "plugin.toml",
     "main.py",
@@ -30,7 +30,7 @@ def main() -> int:
 
     slug = arguments.plugin
     if arguments.tag:
-        match = re.fullmatch(r"(resets-today|runs-since-pb)-v(.+)", arguments.tag)
+        match = re.fullmatch(r"(resets-today|runs-since-pb|number-of-paces)-v(.+)", arguments.tag)
         if match is None:
             parser.error(f"unsupported release tag: {arguments.tag!r}")
         tag_slug, tag_version = match.groups()

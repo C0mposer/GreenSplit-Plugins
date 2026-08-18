@@ -1,54 +1,78 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-13T23:20:03Z",
+  "generated_at": "2026-08-18T07:47:15Z",
   "demo": false,
   "plugins": [
     {
       "id": "com.greensplit.resets-today",
       "name": "Resets Today",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "author": "GreenSplit contributors",
       "summary": "Count today's resets.",
       "description": "Shows how many runs you reset today.",
       "trust": "official",
       "featured": true,
       "downloads": 4,
-      "updated_at": "2026-08-13T23:20:03Z",
+      "updated_at": "2026-08-18T07:47:15Z",
       "accent": "#55DD77",
       "tags": [
         "Attempts",
         "Information"
       ],
       "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/resets-today",
-      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/resets-today-v3.0.0/greensplit-resets-today-3.0.0.zip",
+      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/resets-today-v4.0.0/greensplit-resets-today-4.0.0.zip",
       "github_release": {
         "repository": "C0mposer/GreenSplit-Plugins",
-        "tag": "resets-today-v3.0.0",
-        "asset": "greensplit-resets-today-3.0.0.zip"
+        "tag": "resets-today-v4.0.0",
+        "asset": "greensplit-resets-today-4.0.0.zip"
       }
     },
     {
       "id": "com.greensplit.runs-since-pb",
       "name": "Runs Since PB",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "author": "GreenSplit contributors",
       "summary": "Count runs since your last PB.",
       "description": "Shows how many runs you started since your last PB.",
       "trust": "official",
       "featured": true,
       "downloads": 2,
-      "updated_at": "2026-08-13T23:20:03Z",
+      "updated_at": "2026-08-18T07:47:15Z",
       "accent": "#55DD77",
       "tags": [
         "Attempts",
         "Information"
       ],
       "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/runs-since-pb",
-      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/runs-since-pb-v3.0.0/greensplit-runs-since-pb-3.0.0.zip",
+      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/runs-since-pb-v4.0.0/greensplit-runs-since-pb-4.0.0.zip",
       "github_release": {
         "repository": "C0mposer/GreenSplit-Plugins",
-        "tag": "runs-since-pb-v3.0.0",
-        "asset": "greensplit-runs-since-pb-3.0.0.zip"
+        "tag": "runs-since-pb-v4.0.0",
+        "asset": "greensplit-runs-since-pb-4.0.0.zip"
+      }
+    },
+    {
+      "id": "com.greensplit.number-of-paces",
+      "name": "Number of Paces",
+      "version": "1.0.0",
+      "author": "GreenSplit contributors",
+      "summary": "Count attempts at or below a chosen time.",
+      "description": "Shows how many completed attempts are at or below a chosen time.",
+      "trust": "official",
+      "featured": true,
+      "downloads": 0,
+      "updated_at": "2026-08-18T07:47:15Z",
+      "accent": "#55DD77",
+      "tags": [
+        "Attempts",
+        "Information"
+      ],
+      "repository": "https://github.com/C0mposer/GreenSplit-Plugins/tree/main/plugins/number-of-paces",
+      "release_url": "https://github.com/C0mposer/GreenSplit-Plugins/releases/download/number-of-paces-v1.0.0/greensplit-number-of-paces-1.0.0.zip",
+      "github_release": {
+        "repository": "C0mposer/GreenSplit-Plugins",
+        "tag": "number-of-paces-v1.0.0",
+        "asset": "greensplit-number-of-paces-1.0.0.zip"
       }
     }
   ]

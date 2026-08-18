@@ -19,7 +19,7 @@ class FakeRuntime:
         self.data_root = data_root
         self.plugin_id = "com.greensplit.resets-today"
         self.plugin_name = "Resets Today"
-        self.plugin_version = "3.0.0"
+        self.plugin_version = "4.0.0"
         self.snapshot = gs.Snapshot()
         self.plugin: gs.Plugin | None = None
 
@@ -33,34 +33,38 @@ class FakeRuntime:
         coroutine.close()
 
 
+def load_component(runtime: FakeRuntime) -> gs.Component:
+    spec = importlib.util.spec_from_file_location(
+        "resets_today_test_entrypoint", PLUGIN_ROOT / "main.py"
+    )
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    assert runtime.plugin is not None
+    component_type = runtime.plugin._components["resets_today"]
+    component = component_type()
+    component._runtime = runtime
+    component._instance_id = "resets-instance"
+    return component
+
+
 class ResetsTodayTests(unittest.TestCase):
     def test_counts_only_unfinished_resets(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             runtime = FakeRuntime(Path(temporary))
             _set_runtime(runtime)
             try:
-                spec = importlib.util.spec_from_file_location(
-                    "resets_today_test_entrypoint", PLUGIN_ROOT / "main.py"
-                )
-                assert spec is not None and spec.loader is not None
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-                assert runtime.plugin is not None
-
-                reset = gs.ResetEvent(runtime.snapshot, completed=False)
-                completed = gs.ResetEvent(runtime.snapshot, completed=True)
-                for callback in runtime.plugin._handlers[type(reset)]:
-                    callback(reset)
-                    callback(completed)
+                component = load_component(runtime)
+                component.on_reset(gs.ResetEvent(runtime.snapshot, completed=False))
+                component.on_reset(gs.ResetEvent(runtime.snapshot, completed=True))
 
                 context = gs.ComponentContext(
-                    "resets-instance",
+                    component.instance_id,
                     runtime.snapshot.run,
                     runtime.snapshot.timer,
                     runtime.snapshot.analysis,
                 )
-                element = runtime.plugin._components["resets_today"](context)
-                self.assertEqual(element.to_payload(), {
+                self.assertEqual(component.render(context).to_payload(), {
                     "type": "info",
                     "label": "Resets Today",
                     "value": "1",

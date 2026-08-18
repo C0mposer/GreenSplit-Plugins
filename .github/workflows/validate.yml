@@ -28,12 +28,15 @@ jobs:
           plugins/resets-today/tests/test_plugin.py
           plugins/runs-since-pb/main.py
           plugins/runs-since-pb/tests/test_plugin.py
+          plugins/number-of-paces/main.py
+          plugins/number-of-paces/tests/test_plugin.py
           tools/package_plugins.py
 
       - name: Build release archives
         run: |
           python tools/package_plugins.py --plugin resets-today
           python tools/package_plugins.py --plugin runs-since-pb
+          python tools/package_plugins.py --plugin number-of-paces
 
       - name: Validate catalog metadata
         run: |
@@ -45,7 +48,7 @@ jobs:
           root = Path.cwd()
           catalog = json.loads((root / "plugins.json").read_text(encoding="utf-8"))
           entries = catalog["plugins"]
-          assert len(entries) == 2
+          assert len(entries) == 3
           for entry in entries:
               slug = entry["repository"].rsplit("/", 1)[-1]
               manifest = tomllib.loads(

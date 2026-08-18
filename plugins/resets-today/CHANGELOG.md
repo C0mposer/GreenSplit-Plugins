@@ -1,4 +1,8 @@
-# Resets Today 3.0.0
+# Resets Today 4.0.0
+
+- Updated the example to GreenSplit's simple `gs.Component` API.
+
+## 3.0.0
 
 - Moved layout component details into the Python decorator.
 

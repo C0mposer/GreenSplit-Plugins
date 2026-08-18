@@ -1,0 +1,7 @@
+manifest_version = 1
+id = "com.greensplit.number-of-paces"
+name = "Number of Paces"
+version = "1.0.0"
+entrypoint = "main.py"
+description = "Shows how many completed attempts are at or below a chosen time."
+author = "GreenSplit contributors"

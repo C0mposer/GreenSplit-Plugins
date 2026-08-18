@@ -5,6 +5,7 @@ on:
     tags:
       - "resets-today-v*"
       - "runs-since-pb-v*"
+      - "number-of-paces-v*"
 
 permissions:
   contents: write
@@ -41,6 +42,10 @@ jobs:
             runs-since-pb-v*)
               echo "PLUGIN_NAME=Runs Since PB" >> "$GITHUB_ENV"
               echo "PLUGIN_SLUG=runs-since-pb" >> "$GITHUB_ENV"
+              ;;
+            number-of-paces-v*)
+              echo "PLUGIN_NAME=Number of Paces" >> "$GITHUB_ENV"
+              echo "PLUGIN_SLUG=number-of-paces" >> "$GITHUB_ENV"
               ;;
             *)
               exit 1

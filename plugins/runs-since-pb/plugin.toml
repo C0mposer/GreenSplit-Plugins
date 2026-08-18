@@ -1,7 +1,7 @@
 manifest_version = 1
 id = "com.greensplit.runs-since-pb"
 name = "Runs Since PB"
-version = "3.0.0"
+version = "4.0.0"
 entrypoint = "main.py"
 description = "Shows how many runs you started since your last PB."
 author = "GreenSplit contributors"

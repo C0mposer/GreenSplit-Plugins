@@ -19,7 +19,7 @@ class FakeRuntime:
         self.data_root = data_root
         self.plugin_id = "com.greensplit.runs-since-pb"
         self.plugin_name = "Runs Since PB"
-        self.plugin_version = "3.0.0"
+        self.plugin_version = "4.0.0"
         self.snapshot = gs.Snapshot()
         self.plugin: gs.Plugin | None = None
 
@@ -33,38 +33,40 @@ class FakeRuntime:
         coroutine.close()
 
 
+def load_component(runtime: FakeRuntime) -> gs.Component:
+    spec = importlib.util.spec_from_file_location(
+        "runs_since_pb_test_entrypoint", PLUGIN_ROOT / "main.py"
+    )
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    assert runtime.plugin is not None
+    component_type = runtime.plugin._components["runs_since_pb"]
+    component = component_type()
+    component._runtime = runtime
+    component._instance_id = "runs-instance"
+    return component
+
+
 class RunsSincePbTests(unittest.TestCase):
     def test_counts_starts_then_resets_after_a_pb(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             runtime = FakeRuntime(Path(temporary))
             _set_runtime(runtime)
             try:
-                spec = importlib.util.spec_from_file_location(
-                    "runs_since_pb_test_entrypoint", PLUGIN_ROOT / "main.py"
-                )
-                assert spec is not None and spec.loader is not None
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-                assert runtime.plugin is not None
-
-                started = gs.TimerStartedEvent(runtime.snapshot)
-                for callback in runtime.plugin._handlers[type(started)]:
-                    callback(started)
+                component = load_component(runtime)
+                component.on_timer_started(gs.TimerStartedEvent(runtime.snapshot))
 
                 context = gs.ComponentContext(
-                    "runs-instance",
+                    component.instance_id,
                     runtime.snapshot.run,
                     runtime.snapshot.timer,
                     runtime.snapshot.analysis,
                 )
-                component = runtime.plugin._components["runs_since_pb"]
-                self.assertEqual(component(context).to_payload()["value"], "1")
+                self.assertEqual(component.render(context).to_payload()["value"], "1")
 
-                personal_best = gs.PersonalBestEvent(runtime.snapshot)
-                for callback in runtime.plugin._handlers[type(personal_best)]:
-                    callback(personal_best)
-
-                self.assertEqual(component(context).to_payload()["value"], "0")
+                component.on_personal_best(gs.PersonalBestEvent(runtime.snapshot))
+                self.assertEqual(component.render(context).to_payload()["value"], "0")
             finally:
                 _set_runtime(None)
 
